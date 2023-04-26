@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Chat"
+rootProject.name = "FireChat"
 include ':app'
 include ':auth'
