@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "FireChat"
 include ':app'
 include ':auth'
+include ':core'
