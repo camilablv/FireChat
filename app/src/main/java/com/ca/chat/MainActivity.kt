@@ -10,38 +10,30 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.ca.auth.presentation.login.LoginScreen
+import com.ca.auth.presentation.navigation.Routes
 import com.ca.core.presentation.theme.ChatTheme
-import com.ca.core.presentation.theme.Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ChatTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+                NavigationHost(navController = rememberNavController())
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(
-        text = "Hello $name!",
-        color = Theme.colors.primary
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ChatTheme {
-        Greeting("Android")
+fun NavigationHost(navController: NavHostController) {
+    NavHost(navController = navController, startDestination = Routes.LOGIN.route) {
+        composable(Routes.LOGIN.route) {
+            LoginScreen()
+        }
     }
 }
