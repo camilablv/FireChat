@@ -18,10 +18,10 @@ import androidx.core.view.WindowCompat
 
 @Composable
 fun ChatTheme(
-    darkTheme: Boolean = true,
+    darkTheme: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = DarkColors
+    val colorScheme = if (darkTheme) DarkColors else LightColors
 
 //    val view = LocalView.current
 //    val window = (view.context as? Activity)?.window

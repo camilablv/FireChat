@@ -11,28 +11,40 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-val DarkGrey = Color(0xFF121212)
+val Grey800 = Color(0xFF424242)
 val Black = Color(0xFF000000)
 val Purple200 = Color(0xFFce93d8)
 val DeepPurple200 = Color(0xFFb39ddb)
 val DarkRed = Color(0xFFCF6679)
-val Grey50 = Color(0xFFfafafa)
+val Grey50 = Color(0xFFFAFAFA)
 val Grey900 = Color(0xFF212121)
 
+val Red = Color(0xFFB00020)
+
 val DarkColors = FireChatColors(
-    background = Black,
-    primary = Purple200,
+    background = Grey900,
+    primary = Purple40,
     secondary = DeepPurple200,
-    surface = DarkGrey,
+    surface = Grey800,
     error = DarkRed,
     onBackground = Grey50,
     onPrimary = Grey50,
-    onSecondary = DarkGrey,
+    onSecondary = Grey800,
     onSurface = Grey50,
-    onError = Grey50,
-    focusedTextFieldBorder = Grey900,
-    unfocusedTextFieldBorder = Grey900,
-    disabledButtonBackground = PurpleGrey40
+    onError = Grey50
+)
+
+val LightColors = FireChatColors(
+    background = Color.White,
+    primary = Purple200,
+    secondary = DeepPurple200,
+    surface = Color.White,
+    error = Red,
+    onBackground = Black,
+    onPrimary = Color.White,
+    onSecondary = Black,
+    onSurface = Black,
+    onError = Color.White
 )
 
 data class FireChatColors(
@@ -45,10 +57,7 @@ data class FireChatColors(
     val onPrimary: Color,
     val onSecondary: Color,
     val onSurface: Color,
-    val onError: Color,
-    val focusedTextFieldBorder: Color,
-    val unfocusedTextFieldBorder: Color,
-    val disabledButtonBackground: Color
+    val onError: Color
 )
 
 val LocalFireChatColors = staticCompositionLocalOf<FireChatColors> {

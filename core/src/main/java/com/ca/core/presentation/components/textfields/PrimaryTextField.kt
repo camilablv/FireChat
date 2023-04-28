@@ -1,7 +1,6 @@
 package com.ca.core.presentation.components.textfields
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -33,45 +32,41 @@ fun PrimaryTextField(
     Column(
         modifier = modifier
     ) {
-        Surface(
+        OutlinedTextField(
+            value = value.value,
+            onValueChange = {
+                isError = false
+                value.value = it
+            },
+            modifier = Modifier
+                .fillMaxWidth(1f)
+                .height(60.dp)
+                .semantics { contentDescription = "email_input_field" },
+            textStyle = Theme.typography.bodyLarge,
+            label = { Text(text = label) },
+            visualTransformation = visualTransformation,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = keyboardType,
+                imeAction = ImeAction.Next
+            ),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Theme.colors.surface,
+                unfocusedContainerColor = Theme.colors.surface,
+                errorLabelColor = Theme.colors.error,
+                cursorColor = Theme.colors.onBackground,
+                focusedTextColor = Theme.colors.onBackground,
+                errorContainerColor = Theme.colors.surface,
+                unfocusedLabelColor = Theme.colors.onSurface,
+                focusedLabelColor = Theme.colors.onSurface
+            ),
+            isError = isError,
+            singleLine = true,
             shape = Theme.shapes.textField,
-            tonalElevation = 1.dp,
-            shadowElevation = 1.dp
-        ) {
-            OutlinedTextField(
-                value = value.value,
-                onValueChange = {
-                    isError = false
-                    value.value = it
-                },
-                modifier = Modifier
-                    .fillMaxWidth(1f)
-                    .height(60.dp)
-                    .semantics { contentDescription = "email_input_field" },
-                textStyle = Theme.typography.bodyLarge,
-                placeholder = { Text(text = label) },
-                visualTransformation = visualTransformation,
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = keyboardType,
-                    imeAction = ImeAction.Next
-                ),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Theme.colors.onSecondary,
-                    unfocusedContainerColor = Theme.colors.onSecondary,
-                    errorLabelColor = Theme.colors.error,
-                    cursorColor = Theme.colors.onBackground,
-                    focusedTextColor = Theme.colors.onBackground,
-                    errorContainerColor = Theme.colors.onSecondary
-                ),
-                isError = isError,
-                singleLine = true,
-                shape = Theme.shapes.textField,
-                trailingIcon = {
-                    if (isError)
-                        Icon(Icons.Filled.Error, "error_icon", tint = Theme.colors.error)
-                },
-            )
-        }
+            trailingIcon = {
+                if (isError)
+                    Icon(Icons.Filled.Error, "error_icon", tint = Theme.colors.error)
+            },
+        )
 
         Text(
             text = if (isError) errorMessage!! else "",
