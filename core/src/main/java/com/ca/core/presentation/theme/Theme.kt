@@ -23,15 +23,15 @@ fun ChatTheme(
 ) {
     val colorScheme = DarkColors
 
-    val view = LocalView.current
-    val window = (view.context as? Activity)?.window
-        ?: throw Exception("Not in an activity - unable to get Window reference")
-    if (!view.isInEditMode) {
-        SideEffect {
-            (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-        }
-    }
+//    val view = LocalView.current
+//    val window = (view.context as? Activity)?.window
+//        ?: throw Exception("Not in an activity - unable to get Window reference")
+//    if (!view.isInEditMode) {
+//        SideEffect {
+//            (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
+//            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+//        }
+//    }
 
     CompositionLocalProvider(
         LocalFireChatColors provides colorScheme,
