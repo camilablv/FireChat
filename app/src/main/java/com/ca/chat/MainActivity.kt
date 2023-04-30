@@ -8,7 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.ca.auth.presentation.login.LoginScreen
+import com.ca.auth.presentation.signin.SignInScreen
 import com.ca.auth.presentation.navigation.Routes
 import com.ca.core.presentation.theme.ChatTheme
 
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
 fun NavigationHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Routes.LOGIN.route) {
         composable(Routes.LOGIN.route) {
-            LoginScreen()
+            SignInScreen()
         }
     }
 }

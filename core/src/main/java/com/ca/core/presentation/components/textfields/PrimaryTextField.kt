@@ -79,7 +79,7 @@ fun PrimaryTextField(
 
 @Composable
 @Preview
-fun PrimaryTextFieldPreview() {
+private fun PrimaryTextFieldPreview() {
     val value = remember {
         mutableStateOf("")
     }
