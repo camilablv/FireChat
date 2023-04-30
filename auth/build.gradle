@@ -40,6 +40,7 @@ android {
 dependencies {
 
     implementation project(path: ':core')
+    implementation project(path: ':schema')
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -57,4 +58,11 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+
+    // Arrow
+    implementation "io.arrow-kt:arrow-core:$arrow_version"
+
+    // Apollo
+    implementation "com.apollographql.apollo3:apollo-runtime:$apollo_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 }
