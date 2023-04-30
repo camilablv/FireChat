@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import com.ca.core.presentation.components.textfields.FilledButton
 import com.ca.core.presentation.components.textfields.PrimaryTextField
 import com.ca.core.presentation.theme.ChatTheme
 import com.ca.core.presentation.theme.Theme
@@ -40,7 +41,7 @@ fun SignInScreen() {
                 .fillMaxSize()
                 .imePadding()
         ) {
-            val (signInHeadline, loginTextField, passwordTextField, SignInButton) = createRefs()
+            val (signInHeadline, loginTextField, passwordTextField, signInButton) = createRefs()
 
 
             Text(
@@ -88,6 +89,20 @@ fun SignInScreen() {
                 keyboardType = KeyboardType.Text,
                 visualTransformation = PasswordVisualTransformation()
             )
+
+            FilledButton(
+                text = "Sign In",
+                modifier = Modifier
+                    .constrainAs(signInButton) {
+                        start.linkTo(parent.start, 24.dp)
+                        end.linkTo(parent.end, 24.dp)
+                        width = Dimension.fillToConstraints
+                        bottom.linkTo(parent.bottom, 24.dp)
+                    },
+                enabled = true
+            ) {
+                
+            }
         }
     }
 }
