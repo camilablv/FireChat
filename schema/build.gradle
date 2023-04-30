@@ -30,8 +30,14 @@ android {
         jvmTarget = '1.8'
     }
     apollo {
-        packageName.set("com.ca")
-        generateApolloMetadata.set(true)
+        service("service") {
+            packageName.set("com.ca")
+            generateApolloMetadata.set(true)
+            introspection {
+                endpointUrl.set("https://apollo-fullstack-tutorial.herokuapp.com/graphql")
+                schemaFile.set(file("schema/src/main/graphql/com/pchpsky/schema/schema.json"))
+            }
+        }
     }
 }
 
