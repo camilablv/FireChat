@@ -1,4 +1,4 @@
-package com.ca.chat
+package com.ca.chat.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

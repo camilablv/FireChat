@@ -75,5 +75,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
 
+    //Glide
+    implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
 
 }
