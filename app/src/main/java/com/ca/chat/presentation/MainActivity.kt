@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ca.auth.presentation.signin.SignInScreen
 import com.ca.auth.presentation.navigation.Routes
+import com.ca.chat.presentation.chatlist.ChatListScreen
 import com.ca.core.presentation.theme.ChatTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,9 +26,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun NavigationHost(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Routes.LOGIN.route) {
+    NavHost(navController = navController, startDestination = Routes.CHAT_LIST.route) {
         composable(Routes.LOGIN.route) {
             SignInScreen()
+        }
+        composable(Routes.CHAT_LIST.route) {
+            ChatListScreen()
         }
     }
 }

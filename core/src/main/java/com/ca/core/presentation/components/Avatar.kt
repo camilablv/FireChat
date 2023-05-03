@@ -1,6 +1,7 @@
 package com.ca.core.presentation.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -13,6 +14,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ca.core.R
+import com.ca.core.presentation.theme.ChatTheme
+import com.ca.core.presentation.theme.Theme
 
 @Composable
 fun Avatar() {
@@ -29,11 +32,14 @@ fun Avatar() {
 @Composable
 @Preview
 private fun AvatarPreview() {
-    Box(
-        modifier = Modifier
-            .size(100.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Avatar()
+    ChatTheme {
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .background(Theme.colors.background),
+            contentAlignment = Alignment.Center
+        ) {
+            Avatar()
+        }
     }
 }

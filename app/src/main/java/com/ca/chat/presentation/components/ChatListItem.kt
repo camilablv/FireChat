@@ -9,37 +9,50 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ca.chat.domain.model.ChatListItem
 import com.ca.core.presentation.components.Avatar
 import com.ca.core.presentation.theme.ChatTheme
 import com.ca.core.presentation.theme.Theme
 
 @Composable
 fun ChatListItem(
-
+    item: ChatListItem
 ) {
     Surface(
-        shadowElevation = 4.dp
+        shadowElevation = 2.dp
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(70.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                .height(75.dp)
+                .padding(4.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Avatar()
             Column(
-
+                modifier = Modifier
+                    .fillMaxHeight(),
+                verticalArrangement = Arrangement.SpaceEvenly
             ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = item.nickname,
+                        style = Theme.typography.bodyLarge
+                    )
+                    Text(
+                        text = item.lastMessageTimestamp
+                    )
+                }
+
                 Text(
-                    text = "Dima",
-                    style = Theme.typography.bodyLarge
+                    text = item.lastMessage
                 )
-                Text(
-                    text = "Message"
-                )
-                Text(
-                    text = "13:30"
-                )
+
             }
         }
     }
@@ -51,12 +64,16 @@ private fun ChatListItemPreview() {
     ChatTheme {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
+                .fillMaxSize()
                 .background(Theme.colors.background),
             contentAlignment = Alignment.Center
         ) {
-            ChatListItem()
+            ChatListItem(
+                avatarUrl = "",
+                nickname = "Dima",
+                lastMessage = "Last message bla bla...",
+                lastMessageTimestamp = "13:16"
+            )
         }
     }
 }
