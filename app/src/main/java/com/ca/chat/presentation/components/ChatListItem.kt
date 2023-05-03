@@ -29,7 +29,10 @@ fun ChatListItem(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Avatar()
+            Avatar(
+                modifier = Modifier
+                    .size(70.dp)
+            )
             Column(
                 modifier = Modifier
                     .fillMaxHeight(),

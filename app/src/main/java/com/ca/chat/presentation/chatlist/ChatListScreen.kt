@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.ca.chat.domain.model.ChatListItem
 import com.ca.chat.presentation.components.ChatListItem
+import com.ca.chat.presentation.components.HomeTopBar
 import com.ca.core.presentation.theme.ChatTheme
 
 @Composable
@@ -15,7 +16,9 @@ fun ChatListScreen() {
         ChatListItem("", "Dima", "message", "12:08")
     }
 
-    Scaffold {
+    Scaffold(
+        topBar = { HomeTopBar() }
+    ) {
         LazyColumn {
             items(chats.size) {
                 ChatListItem(item = chats[it])

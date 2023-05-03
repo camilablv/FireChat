@@ -18,12 +18,13 @@ import com.ca.core.presentation.theme.ChatTheme
 import com.ca.core.presentation.theme.Theme
 
 @Composable
-fun Avatar() {
+fun Avatar(
+    modifier: Modifier
+) {
     Image(
         painter = painterResource(id = R.drawable.cat),
         contentDescription = "",
-        modifier = Modifier
-            .size(70.dp)
+        modifier = modifier
             .clip(CircleShape),
         contentScale = ContentScale.Crop
     )
@@ -39,7 +40,10 @@ private fun AvatarPreview() {
                 .background(Theme.colors.background),
             contentAlignment = Alignment.Center
         ) {
-            Avatar()
+            Avatar(
+                modifier = Modifier
+                    .size(70.dp)
+            )
         }
     }
 }
