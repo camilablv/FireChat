@@ -16,7 +16,7 @@ import com.ca.core.presentation.theme.Theme
 
 @Composable
 fun ChannelsItem(
-    item: Channel
+    channel: Channel
 ) {
     Surface(
         shadowElevation = 2.dp
@@ -35,7 +35,8 @@ fun ChannelsItem(
             )
             Column(
                 modifier = Modifier
-                    .fillMaxHeight(),
+                    .fillMaxHeight()
+                    .padding(end = 4.dp),
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Row(
@@ -44,16 +45,16 @@ fun ChannelsItem(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = item.nickname,
+                        text = channel.nickname,
                         style = Theme.typography.bodyLarge
                     )
                     Text(
-                        text = item.lastMessageTimestamp
+                        text = channel.lastMessageTimestamp
                     )
                 }
 
                 Text(
-                    text = item.lastMessage
+                    text = channel.lastMessage
                 )
 
             }
@@ -63,7 +64,16 @@ fun ChannelsItem(
 
 @Composable
 @Preview
-private fun ChatListItemPreview() {
+private fun ChannelsItemPreview() {
+
+    val channel = Channel(
+        avatarUrl = "",
+        nickname = "Dima",
+        lastMessage = "Last message bla bla...",
+        lastMessageTimestamp = "13:16",
+        unreadMessagesCount = 3
+    )
+    
     ChatTheme {
         Box(
             modifier = Modifier
@@ -71,12 +81,7 @@ private fun ChatListItemPreview() {
                 .background(Theme.colors.background),
             contentAlignment = Alignment.Center
         ) {
-            Channel(
-                avatarUrl = "",
-                nickname = "Dima",
-                lastMessage = "Last message bla bla...",
-                lastMessageTimestamp = "13:16"
-            )
+            ChannelsItem(channel = channel)
         }
     }
 }

@@ -19,7 +19,7 @@ fun ChannelsScreen(
 ) {
 
     val chats = List(20) {
-        Channel("", "Dima", "message", "12:08")
+        Channel("", "Dima", "message", "12:08", 3)
     }
 
     Scaffold(
@@ -30,7 +30,7 @@ fun ChannelsScreen(
                 .padding(paddingValues)
         ) {
             items(chats.size) {
-                ChannelsItem(item = chats[it])
+                ChannelsItem(channel = chats[it])
             }
         }
     }
