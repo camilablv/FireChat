@@ -1,4 +1,4 @@
-package com.ca.chat.presentation.chatlist
+package com.ca.channels.presentation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -6,27 +6,31 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ca.chat.domain.model.ChatListItem
-import com.ca.chat.presentation.components.ChatListItem
-import com.ca.chat.presentation.components.HomeTopBar
+import com.ca.channels.domain.model.Channel
+import com.ca.channels.presentation.components.ChannelsItem
+import com.ca.channels.presentation.components.ChannelsTopBar
 import com.ca.core.presentation.theme.ChatTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ChatListScreen() {
+fun ChannelsScreen(
+    viewModelImpl: ChannelsViewModelImpl = koinViewModel(),
+    navigateToChat: () -> Unit
+) {
 
     val chats = List(20) {
-        ChatListItem("", "Dima", "message", "12:08")
+        Channel("", "Dima", "message", "12:08")
     }
 
     Scaffold(
-        topBar = { HomeTopBar() }
+        topBar = { ChannelsTopBar() }
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                 .padding(paddingValues)
         ) {
             items(chats.size) {
-                ChatListItem(item = chats[it])
+                ChannelsItem(item = chats[it])
             }
         }
     }
@@ -36,6 +40,8 @@ fun ChatListScreen() {
 @Preview
 private fun ChatListScreenPreview() {
     ChatTheme {
-        ChatListScreen()
+        ChannelsScreen(
+            navigateToChat = {}
+        )
     }
 }

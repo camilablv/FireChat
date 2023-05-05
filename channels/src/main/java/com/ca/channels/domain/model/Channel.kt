@@ -1,6 +1,6 @@
-package com.ca.chat.domain.model
+package com.ca.channels.domain.model
 
-data class ChatListItem(
+data class Channel(
     val avatarUrl: String,
     val nickname: String,
     val lastMessage: String,

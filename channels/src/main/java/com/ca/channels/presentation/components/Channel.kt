@@ -1,4 +1,4 @@
-package com.ca.chat.presentation.components
+package com.ca.channels.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -9,14 +9,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ca.chat.domain.model.ChatListItem
+import com.ca.channels.domain.model.Channel
 import com.ca.core.presentation.components.Avatar
 import com.ca.core.presentation.theme.ChatTheme
 import com.ca.core.presentation.theme.Theme
 
 @Composable
-fun ChatListItem(
-    item: ChatListItem
+fun ChannelsItem(
+    item: Channel
 ) {
     Surface(
         shadowElevation = 2.dp
@@ -71,7 +71,7 @@ private fun ChatListItemPreview() {
                 .background(Theme.colors.background),
             contentAlignment = Alignment.Center
         ) {
-            ChatListItem(
+            Channel(
                 avatarUrl = "",
                 nickname = "Dima",
                 lastMessage = "Last message bla bla...",

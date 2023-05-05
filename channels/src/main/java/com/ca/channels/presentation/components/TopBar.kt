@@ -1,11 +1,8 @@
-package com.ca.chat.presentation.components
+package com.ca.channels.presentation.components
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -21,7 +18,7 @@ import com.ca.core.presentation.theme.Theme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeTopBar() {
+fun ChannelsTopBar() {
     TopAppBar(
         title = { Text(text = "Fire Chat", fontSize = 18.sp, color = Theme.colors.onSurface) },
         modifier = Modifier
@@ -76,7 +73,7 @@ fun ChatTopBar(
 @Preview
 private fun HomeTopBarPreview() {
     ChatTheme {
-        HomeTopBar()
+        ChannelsTopBar()
     }
 }
 
