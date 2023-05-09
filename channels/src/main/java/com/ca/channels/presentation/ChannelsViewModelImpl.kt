@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class ChannelsViewModelImpl(
-    val getChatListUseCase: GetChannelsUseCase
+    private val getChatListUseCase: GetChannelsUseCase
 ) : ViewModel(), ChannelsViewModel {
 
     private var _viewState = MutableStateFlow(ChannelsViewState())

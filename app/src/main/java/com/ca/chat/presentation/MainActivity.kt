@@ -28,8 +28,10 @@ class MainActivity : ComponentActivity() {
 fun NavigationHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Routes.LOGIN.route) {
         composable(Routes.LOGIN.route) {
-            SignInScreen() {
-                navController.navigate(Routes.CHANNELS.route)
+            SignInScreen {
+                navController.navigate(Routes.CHANNELS.route) {
+                    popUpTo(Routes.LOGIN.route) { inclusive = true }
+                }
             }
         }
         composable(Routes.CHANNELS.route) {
