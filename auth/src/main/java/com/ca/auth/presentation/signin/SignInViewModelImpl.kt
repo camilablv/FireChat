@@ -7,10 +7,10 @@ import com.ca.auth.domain.usecase.SignInUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class SignInViewModelImpl(useCase: SignInUseCase) : ViewModel(), SignInViewModel {
+class SignInViewModelImpl(private val useCase: SignInUseCase) : ViewModel(), SignInViewModel {
 
     private val _viewState: MutableStateFlow<SignInViewState> = MutableStateFlow(SignInViewState())
-    override val uiState: StateFlow<SignInViewState>
+    override val viewState: StateFlow<SignInViewState>
         get() = _viewState
 
     override val login: MutableState<String>
@@ -19,6 +19,6 @@ class SignInViewModelImpl(useCase: SignInUseCase) : ViewModel(), SignInViewModel
         get() = mutableStateOf("")
 
     override suspend fun signIn(login: String, password: String) {
-        TODO("Not yet implemented")
+        useCase.signIn(login, password)
     }
 }

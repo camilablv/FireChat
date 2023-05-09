@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ca.channels.domain.model.Channel
@@ -17,10 +19,11 @@ fun ChannelsScreen(
     viewModel: ChannelsViewModelImpl = koinViewModel(),
     navigateToChannel: () -> Unit
 ) {
-
-    val chats = List(20) {
-        Channel("", "Dima", "Last message...", "12:08", 3)
+    LaunchedEffect(true) {
+        viewModel.channels()
     }
+
+    val viewState = viewModel.viewState.collectAsState()
 
     Scaffold(
         topBar = { ChannelsTopBar() }
@@ -29,8 +32,8 @@ fun ChannelsScreen(
             modifier = Modifier
                 .padding(paddingValues)
         ) {
-            items(chats.size) {
-                ChannelsItem(channel = chats[it]) {
+            items(viewState.value.channels.size) {
+                ChannelsItem(channel = viewState.value.channels[it]) {
                     navigateToChannel()
                 }
             }

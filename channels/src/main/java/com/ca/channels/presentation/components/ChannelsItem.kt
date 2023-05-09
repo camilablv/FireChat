@@ -1,6 +1,7 @@
 package com.ca.channels.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -27,7 +28,8 @@ fun ChannelsItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(75.dp)
-                .padding(4.dp),
+                .padding(4.dp)
+                .clickable { onClick() },
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

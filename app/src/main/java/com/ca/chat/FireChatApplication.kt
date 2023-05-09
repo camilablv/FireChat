@@ -1,6 +1,7 @@
 package com.ca.chat
 
 import android.app.Application
+import com.ca.auth.di.authModule
 import com.ca.channels.di.channelsModule
 import com.ca.chat.di.appModule
 import org.koin.android.ext.koin.androidContext
@@ -14,7 +15,8 @@ class FireChatApplication : Application() {
             androidContext(this@FireChatApplication)
             modules(
                 appModule,
-                channelsModule
+                channelsModule,
+                authModule
             )
         }
     }

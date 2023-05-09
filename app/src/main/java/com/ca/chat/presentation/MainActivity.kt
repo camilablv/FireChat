@@ -26,9 +26,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun NavigationHost(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Routes.CHANNELS.route) {
+    NavHost(navController = navController, startDestination = Routes.LOGIN.route) {
         composable(Routes.LOGIN.route) {
-            SignInScreen()
+            SignInScreen() {
+                navController.navigate(Routes.CHANNELS.route)
+            }
         }
         composable(Routes.CHANNELS.route) {
             ChannelsScreen {

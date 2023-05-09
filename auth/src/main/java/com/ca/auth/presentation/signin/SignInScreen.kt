@@ -4,10 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -20,18 +17,19 @@ import com.ca.core.presentation.components.textfields.FilledButton
 import com.ca.core.presentation.components.textfields.PrimaryTextField
 import com.ca.core.presentation.theme.ChatTheme
 import com.ca.core.presentation.theme.Theme
+import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SignInScreen() {
+fun SignInScreen(
+    viewModel: SignInViewModelImpl = koinViewModel(),
+    navigateTo: () -> Unit
+) {
 
     val scope = rememberCoroutineScope()
-    val login = remember {
-        mutableStateOf("")
-    }
+    val viewState = viewModel.viewState.collectAsState()
 
-    val password = remember {
-        mutableStateOf("")
-    }
+    if (viewState.value.signInSuccessful) navigateTo()
 
     Scaffold(
         containerColor = Theme.colors.background
@@ -59,7 +57,7 @@ fun SignInScreen() {
             )
 
             PrimaryTextField(
-                value = login,
+                value = viewModel.login,
                 modifier = Modifier
                     .constrainAs(loginTextField) {
                         top.linkTo(signInHeadline.bottom, 36.dp)
@@ -69,13 +67,13 @@ fun SignInScreen() {
                     }
                 ,
                 label = "Login",
-                errorMessage = null,
+                errorMessage = viewState.value.loginError,
                 keyboardType = KeyboardType.Text,
                 visualTransformation = VisualTransformation.None
             )
 
             PrimaryTextField(
-                value = password,
+                value = viewModel.password,
                 modifier = Modifier
                     .constrainAs(passwordTextField) {
                         top.linkTo(loginTextField.bottom, 16.dp)
@@ -85,7 +83,7 @@ fun SignInScreen() {
                     }
                     ,
                 label = "Password",
-                errorMessage = null,
+                errorMessage = viewState.value.passwordError,
                 keyboardType = KeyboardType.Text,
                 visualTransformation = PasswordVisualTransformation()
             )
@@ -101,7 +99,10 @@ fun SignInScreen() {
                     },
                 enabled = true
             ) {
-                
+                scope.launch {
+                    viewModel.signIn(viewModel.login.value, viewModel.password.value)
+                    navigateTo.invoke() //todo remove it
+                }
             }
         }
     }
@@ -111,6 +112,8 @@ fun SignInScreen() {
 @Preview
 private fun SignInScreenPreview() {
     ChatTheme {
-        SignInScreen()
+        SignInScreen() {
+
+        }
     }
 }
