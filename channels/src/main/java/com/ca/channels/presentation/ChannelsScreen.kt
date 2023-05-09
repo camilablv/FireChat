@@ -14,12 +14,12 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ChannelsScreen(
-    viewModelImpl: ChannelsViewModelImpl = koinViewModel(),
-    navigateToChat: () -> Unit
+    viewModel: ChannelsViewModelImpl = koinViewModel(),
+    navigateToChannel: () -> Unit
 ) {
 
     val chats = List(20) {
-        Channel("", "Dima", "message", "12:08", 3)
+        Channel("", "Dima", "Last message...", "12:08", 3)
     }
 
     Scaffold(
@@ -30,7 +30,9 @@ fun ChannelsScreen(
                 .padding(paddingValues)
         ) {
             items(chats.size) {
-                ChannelsItem(channel = chats[it])
+                ChannelsItem(channel = chats[it]) {
+                    navigateToChannel()
+                }
             }
         }
     }
@@ -41,7 +43,7 @@ fun ChannelsScreen(
 private fun ChatListScreenPreview() {
     ChatTheme {
         ChannelsScreen(
-            navigateToChat = {}
+            navigateToChannel = {}
         )
     }
 }

@@ -11,12 +11,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ca.channels.domain.model.Channel
 import com.ca.core.presentation.components.Avatar
+import com.ca.core.presentation.components.NewMessagesCount
 import com.ca.core.presentation.theme.ChatTheme
 import com.ca.core.presentation.theme.Theme
 
 @Composable
 fun ChannelsItem(
-    channel: Channel
+    channel: Channel,
+    onClick: () -> Unit
 ) {
     Surface(
         shadowElevation = 2.dp
@@ -53,10 +55,18 @@ fun ChannelsItem(
                     )
                 }
 
-                Text(
-                    text = channel.lastMessage
-                )
-
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = channel.lastMessage
+                    )
+                    NewMessagesCount(
+                        channel.unreadMessagesCount
+                    )
+                }
             }
         }
     }
@@ -69,7 +79,7 @@ private fun ChannelsItemPreview() {
     val channel = Channel(
         avatarUrl = "",
         nickname = "Dima",
-        lastMessage = "Last message bla bla...",
+        lastMessage = "Last message...",
         lastMessageTimestamp = "13:16",
         unreadMessagesCount = 3
     )
@@ -81,7 +91,7 @@ private fun ChannelsItemPreview() {
                 .background(Theme.colors.background),
             contentAlignment = Alignment.Center
         ) {
-            ChannelsItem(channel = channel)
+            ChannelsItem(channel = channel) {}
         }
     }
 }
