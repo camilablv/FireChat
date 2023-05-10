@@ -3,9 +3,12 @@ package com.ca.channels.presentation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ca.channels.domain.model.Channel
@@ -19,14 +22,16 @@ fun ChannelsScreen(
     viewModel: ChannelsViewModelImpl = koinViewModel(),
     navigateToChannel: () -> Unit
 ) {
+    val viewState = viewModel.viewState.collectAsState()
+    val snackbarHostState = remember { SnackbarHostState() }
+    
     LaunchedEffect(true) {
         viewModel.channels()
     }
-
-    val viewState = viewModel.viewState.collectAsState()
-
+    
     Scaffold(
-        topBar = { ChannelsTopBar() }
+        topBar = { ChannelsTopBar() },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier

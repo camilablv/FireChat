@@ -5,5 +5,5 @@ data class SignInViewState(
     var signInSuccessful: Boolean = false,
     var loginError: String? = null,
     var passwordError: String? = null,
-    var authError: String = ""
+    var authError: String? = null
 )

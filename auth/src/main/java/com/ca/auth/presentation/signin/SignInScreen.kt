@@ -1,8 +1,14 @@
 package com.ca.auth.presentation.signin
 
+import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -17,9 +23,11 @@ import com.ca.core.presentation.components.textfields.FilledButton
 import com.ca.core.presentation.components.textfields.PrimaryTextField
 import com.ca.core.presentation.theme.ChatTheme
 import com.ca.core.presentation.theme.Theme
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun SignInScreen(
     viewModel: SignInViewModelImpl = koinViewModel(),
@@ -27,12 +35,18 @@ fun SignInScreen(
 ) {
 
     val scope = rememberCoroutineScope()
-    val viewState = viewModel.viewState.collectAsState()
+    val viewState by viewModel.viewState.collectAsState()
+    val snackbarHostState = remember { SnackbarHostState() }
 
-    if (viewState.value.signInSuccessful) navigateTo()
+    if (viewState.signInSuccessful) navigateTo()
 
     Scaffold(
-        containerColor = Theme.colors.background
+        containerColor = Theme.colors.background,
+        snackbarHost = { SnackbarHost(
+            hostState = snackbarHostState,
+            modifier = Modifier
+                .padding(bottom = 70.dp)
+        ) }
     ) {
         ConstraintLayout(
             modifier = Modifier
@@ -67,7 +81,7 @@ fun SignInScreen(
                     }
                 ,
                 label = "Login",
-                errorMessage = viewState.value.loginError,
+                errorMessage = viewState.loginError,
                 keyboardType = KeyboardType.Text,
                 visualTransformation = VisualTransformation.None
             )
@@ -83,7 +97,7 @@ fun SignInScreen(
                     }
                     ,
                 label = "Password",
-                errorMessage = viewState.value.passwordError,
+                errorMessage = viewState.passwordError,
                 keyboardType = KeyboardType.Text,
                 visualTransformation = PasswordVisualTransformation()
             )
@@ -104,6 +118,10 @@ fun SignInScreen(
                     navigateTo.invoke() //todo remove it
                 }
             }
+        }
+
+        if (viewState.authError != null) {
+            scope.launch { snackbarHostState.showSnackbar(viewState.authError!!) }
         }
     }
 }
