@@ -36,9 +36,9 @@ fun ChatTextField(
                 value.value = it
             },
             modifier = Modifier
-                .height(42.dp)
+                .heightIn(42.dp, 86.dp)
                 .animateContentSize(),
-            maxLines = 4
+            maxLines = 5
         ) { innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = value.value,

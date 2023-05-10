@@ -55,7 +55,7 @@ fun ChatScreen(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(10f)
+                    .weight(12f)
             ) {
 
             }
