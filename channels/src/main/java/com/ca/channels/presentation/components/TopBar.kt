@@ -38,36 +38,7 @@ fun ChannelsTopBar() {
     )
 }
 
-@Composable
-fun ChatTopBar(
-    avatarUrl: String,
-    nickname: String,
-    onClick: () -> Unit,
-    onNavigationIconClick: () -> Unit
-) {
-    Surface(
-        shadowElevation = 4.dp
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(64.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            IconButton(onClick = { onNavigationIconClick() }) {
-                Icon(
-                    imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = "Back Icon",
-                    tint = Theme.colors.onSurface
-                )
-            }
-            Avatar(modifier = Modifier.size(30.dp))
-            Text(text = nickname, fontSize = 18.sp, color = Theme.colors.onSurface)
-        }
-    }
 
-}
 
 @Composable
 @Preview
@@ -77,12 +48,3 @@ private fun HomeTopBarPreview() {
     }
 }
 
-@Composable
-@Preview
-private fun ChatTopBarPreview() {
-    ChatTheme {
-        ChatTopBar(avatarUrl = "", nickname = "Dima", onClick = { /*TODO*/ }) {
-
-        }
-    }
-}
