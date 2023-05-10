@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun NavigationHost(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Routes.LOGIN.route) {
+    NavHost(navController = navController, startDestination = Routes.CHAT.route) {
         composable(Routes.LOGIN.route) {
             SignInScreen {
                 navController.navigate(Routes.CHANNELS.route) {
@@ -38,6 +38,14 @@ fun NavigationHost(navController: NavHostController) {
             ChannelsScreen {
 
             }
+        }
+        composable(Routes.CHAT.route) {
+            ChatScreen(
+                onAvatarClick = {},
+                onNavigationIconClick = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

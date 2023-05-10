@@ -53,6 +53,7 @@ dependencies {
     implementation project(path: ':core')
     implementation project(path: ':auth')
     implementation project(path: ':channels')
+    implementation project(path: ':chat')
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
