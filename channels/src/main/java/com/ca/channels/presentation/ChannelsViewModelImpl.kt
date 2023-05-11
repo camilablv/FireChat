@@ -17,7 +17,7 @@ class ChannelsViewModelImpl(
         get() = _viewState
 
     override suspend fun channels() {
-        if (viewState.value.channels[0].lastMessage.isEmpty()) simulateLoadingAndDelay() //todo remove it later
+        simulateLoadingAndDelay() //todo remove it later
         val channels = getChatListUseCase.channels()
         _viewState.value = _viewState.value.copy(loading = false, channels = channels)
     }

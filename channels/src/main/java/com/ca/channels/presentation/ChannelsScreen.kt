@@ -1,5 +1,7 @@
 package com.ca.channels.presentation
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
@@ -11,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.ca.channels.domain.model.Channel
 import com.ca.channels.presentation.components.ChannelsItem
+import com.ca.channels.presentation.components.ChannelsLoadingFadeAnimation
 import com.ca.channels.presentation.components.ChannelsTopBar
 import com.ca.core.presentation.theme.ChatTheme
 import com.google.accompanist.placeholder.PlaceholderHighlight
@@ -36,20 +39,26 @@ fun ChannelsScreen(
         topBar = { ChannelsTopBar() },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
     ) { paddingValues ->
-        LazyColumn(
+        Box(
             modifier = Modifier
                 .padding(paddingValues)
         ) {
-            items(viewState.channels.size) {
-                ChannelsItem(
-                    channel = viewState.channels[it],
-                    isLoading = viewState.loading
-                ) {
-//                    viewModel.reset()
-                    navigateToChannel()
+            ChannelsLoadingFadeAnimation(isVisible = viewState.loading)
+
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                items(viewState.channels.size) {
+                    ChannelsItem(
+                        channel = viewState.channels[it]
+                    ) {
+                        navigateToChannel()
+                    }
                 }
             }
         }
+
     }
 }
 
