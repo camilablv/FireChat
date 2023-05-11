@@ -5,5 +5,5 @@ data class Channel(
     val nickname: String,
     val lastMessage: String,
     val lastMessageTimestamp: String,
-    val unreadMessagesCount: Int
+    val unreadMessagesCount: Int?
 )

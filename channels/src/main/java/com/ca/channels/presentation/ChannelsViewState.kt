@@ -4,5 +4,7 @@ import com.ca.channels.domain.model.Channel
 
 data class ChannelsViewState(
     val loading: Boolean = false,
-    val channels: List<Channel> = emptyList(),
+    val channels: List<Channel> = List(20) {
+        Channel("", "", "", "", null)
+    }
 )

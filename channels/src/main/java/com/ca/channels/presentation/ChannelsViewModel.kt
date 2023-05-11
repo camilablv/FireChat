@@ -4,5 +4,5 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface ChannelsViewModel {
     val viewState: StateFlow<ChannelsViewState>
-    fun channels()
+    suspend fun channels()
 }
