@@ -40,8 +40,9 @@ android {
 dependencies {
 
     implementation project(path: ':core')
+    implementation project(path: ':schema')
 
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     testImplementation 'junit:junit:4.13.2'
@@ -56,4 +57,16 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+
+    // Arrow
+    implementation "io.arrow-kt:arrow-core:$arrow_version"
+
+    // Apollo
+    implementation "com.apollographql.apollo3:apollo-runtime:$apollo_version"
+
+    // Koin
+    implementation "io.insert-koin:koin-android:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_androidx_compose_version"
 }

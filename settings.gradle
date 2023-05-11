@@ -16,3 +16,6 @@ rootProject.name = "FireChat"
 include ':app'
 include ':auth'
 include ':core'
+include ':schema'
+include ':channels'
+include ':chat'
