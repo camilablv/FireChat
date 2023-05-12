@@ -7,22 +7,20 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.ca.chat.R
 import com.ca.chat.presentation.components.ChatItem
 import com.ca.chat.presentation.components.ChatTextField
@@ -30,7 +28,6 @@ import com.ca.chat.presentation.components.ChatTopBar
 import com.ca.chat.presentation.components.MessagePosition
 import com.ca.core.presentation.theme.ChatTheme
 import com.ca.core.presentation.theme.Purple80
-import com.ca.core.presentation.theme.Theme
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -62,7 +59,7 @@ fun ChatScreen(
             )
         }
     ) { paddingValues ->
-        Column(
+        ConstraintLayout(
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxSize()
@@ -72,11 +69,18 @@ fun ChatScreen(
                     )
                 )
         ) {
+            val (messageList, textField) = createRefs()
+
             LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(12f)
-                    .imePadding(),
+                    .imePadding()
+                    .constrainAs(messageList) {
+                        top.linkTo(parent.top)
+                        width = Dimension.matchParent
+                        bottom.linkTo(textField.top)
+                        height = Dimension.fillToConstraints
+                    },
                 state = lazyListState,
                 verticalArrangement = Arrangement.Bottom
             ) {
@@ -91,9 +95,13 @@ fun ChatScreen(
             }
             Row(
                 modifier = Modifier
-                    .weight(1f)
                     .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp)
+                    .padding(16.dp)
+                    .constrainAs(textField) {
+                        bottom.linkTo(parent.bottom)
+                        width = Dimension.fillToConstraints
+                    },
+                verticalAlignment = Alignment.Bottom
             ) {
                 ChatTextField(
                     value = viewModel.typedMessage,
