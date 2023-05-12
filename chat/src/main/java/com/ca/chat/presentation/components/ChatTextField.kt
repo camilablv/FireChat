@@ -28,7 +28,7 @@ fun ChatTextField(
     Surface(
         modifier = modifier,
         shadowElevation = 2.dp,
-        shape = RoundedCornerShape(50)
+        shape = RoundedCornerShape(25.dp)
     ) {
         BasicTextField(
             value = value.value,
@@ -38,7 +38,7 @@ fun ChatTextField(
             modifier = Modifier
                 .heightIn(42.dp, 86.dp)
                 .animateContentSize(),
-            maxLines = 5
+            maxLines = 6
         ) { innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = value.value,
@@ -57,7 +57,7 @@ fun ChatTextField(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White
                 ),
-                contentPadding = PaddingValues(10.dp)
+                contentPadding = PaddingValues(12.dp)
             )
         }
     }

@@ -25,7 +25,7 @@ import com.google.accompanist.placeholder.shimmer
 @Composable
 fun ChannelsItem(
     channel: Channel,
-    onClick: () -> Unit
+    onClick: (Channel) -> Unit
 ) {
     Surface(
         shadowElevation = 2.dp
@@ -35,7 +35,7 @@ fun ChannelsItem(
                 .fillMaxWidth()
                 .height(75.dp)
                 .padding(4.dp)
-                .clickable { onClick() },
+                .clickable { onClick(channel) },
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
