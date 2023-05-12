@@ -25,7 +25,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun ChannelsScreen(
     viewModel: ChannelsViewModelImpl = koinViewModel(),
-    navigateToChannel: () -> Unit
+    navigateToChannel: (Channel) -> Unit
 ) {
     val viewState by viewModel.viewState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -51,10 +51,9 @@ fun ChannelsScreen(
             ) {
                 items(viewState.channels.size) {
                     ChannelsItem(
-                        channel = viewState.channels[it]
-                    ) {
-                        navigateToChannel()
-                    }
+                        channel = viewState.channels[it],
+                        onClick = navigateToChannel
+                    )
                 }
             }
         }
