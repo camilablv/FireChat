@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun NavigationHost(navController: NavHostController) {
-    AnimatedNavHost(navController = navController, startDestination = Routes.CHANNELS.route) {
+    AnimatedNavHost(navController = navController, startDestination = Routes.CHAT.route) {
         composable(
             route = Routes.LOGIN.route,
             enterTransition = null,
